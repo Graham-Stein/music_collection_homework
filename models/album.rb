@@ -3,7 +3,7 @@ require('pry')
 
 class Album
 
-  attr_reader :id #, :artist
+  attr_reader :id, :artist_id
   attr_accessor :title, :genre
 
   def initialize(options)
@@ -13,6 +13,16 @@ class Album
     @genre = options["genre"]
   end
 
+  def artist()
+    sql = "
+    SELECT name FROM artists
+    WHERE id = $1;
+    "
+    results = SqlRunner.run(sql,[@artist_id])
+    artist_object = results[0]
+    artist = Artist.new(artist_object)
+    return artist
+  end
 
   def save()
     sql = "

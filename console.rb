@@ -3,6 +3,12 @@ require('pry')
 require_relative('models/artist.rb')
 require_relative('models/album.rb')
 
+# Still to do:
+# 1. list all albums by an artist.
+# 2. show the artist any album belongs to. √
+
+
+
 Album.delete_all()
 Artist.delete_all()
 
@@ -60,7 +66,6 @@ album4.save()
 album5.save()
 
 
-# binding.pry
 
 # p Artist.all()
 artist_list = Artist.all
@@ -72,5 +77,9 @@ artist_list = Artist.all
     album_list.each do |hash|
     p " #{hash.title} ALBUM & #{hash.id}"
     end
+
+    p " "
+   
+    binding.pry
 
 nil

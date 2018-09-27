@@ -12,6 +12,22 @@ class Artist
     @name = options["name"]
   end
 
+  def albums()
+    # take the artist
+    sql = "
+    SELECT title FROM albums
+    WHERE artist_id = $1;
+    "
+    results = SqlRunner.run(sql,[@id])
+    albums = results.map do |album_hash|
+      Album.new(album_hash)
+    end
+    # album_object = results[0]
+    # albums = Album.new(album_object)
+    return albums
+    # return a list of all albums by that artist
+  end
+
   def save()
     sql = "
       INSERT INTO artists (name)
